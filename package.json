@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "node index"
+  },
   "dependencies": {
     "server-router": "6.0.0"
   }
