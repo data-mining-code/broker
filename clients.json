@@ -1,0 +1,7 @@
+[
+  {
+    "name": "Example",
+    "url": "example:4000",
+    "accepts": ["example"]
+  }
+]
