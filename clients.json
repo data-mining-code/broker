@@ -1,7 +1,7 @@
 [
   {
     "name": "Example",
-    "url": "example",
-    "accepts": ["example"]
+    "url": "pythontest",
+    "accepts": ["example", "opening hours"]
   }
 ]
