@@ -2,6 +2,6 @@
   {
     "name": "Example",
     "url": "pythontest",
-    "accepts": ["How many players are in FiFa18?", "How much does Ronaldo cost?","example Error"]
+    "accepts": ["How many players are in FiFa18?", "How much does Ronaldo cost?", "example Error"]
   }
 ]

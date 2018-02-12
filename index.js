@@ -9,7 +9,7 @@ const router = serverRouter()
 
 router.route('GET', '/api/request', async (req, res) => {
   const input = querystring.parse(url.parse(req.url).query).input
-  const client = clients.find(c => c.accepts.includes(input))
+  const client = clients[0]
   let response
   if (!client) {
     response = `Sorry, I don't understand.`
