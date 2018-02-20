@@ -41,7 +41,6 @@ router.route('GET', '/api/request', async (req, res) => {
       }
     })
   }
-  console.log(qs)
 
   let response
   if (!client) {
