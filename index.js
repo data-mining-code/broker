@@ -43,7 +43,7 @@ router.route('GET', '/api/request', async (req, res) => {
   }
 
   let response
-  if (!client) {
+  if (client.name === 'notfound') {
     response = `Sorry, I don't understand.`
   } else {
     response = await r2(`http://pythontest${qs}`).text
