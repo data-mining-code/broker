@@ -3,6 +3,7 @@
     "start": "node index"
   },
   "dependencies": {
+    "execall": "1.0.0",
     "r2": "2.0.0",
     "server-router": "6.0.0"
   }
