@@ -52,7 +52,9 @@ router.route('GET', '/api/request', async (req, res) => {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json'
   })
-  res.end(JSON.stringify({text}))
+  res.end(JSON.stringify({
+    text: response
+  }))
 })
 
 http.createServer(router.start()).listen(3030)
