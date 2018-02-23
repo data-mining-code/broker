@@ -43,8 +43,9 @@ router.route('GET', '/api/request', async (req, res) => {
   const timestamp = Date.now()
   const input = querystring.parse(url.parse(req.url).query).input
   const client = clients.find(c => c.regex.test(input))
-  let qs = `?client=${client.name}`
   const result = exec(client.regex, input)
+  let qs = `?client=${client.name}`
+
   let args = {}
   if (client.arguments) {
     client.arguments.forEach(arg => {
@@ -54,6 +55,7 @@ router.route('GET', '/api/request', async (req, res) => {
       }
     })
   }
+
   const obj = {
     text: input,
     query: {
