@@ -10,7 +10,7 @@ const router = serverRouter()
 const clients = [
   {
     "name": "stock",
-    "regex": /(?:is(?: there)?|do we have) (\S+) in stock(?: at ([A-Z]+))?/i,
+    "regex": /(?:is(?: there)?|do we have) (\S+) in stock(?: at (\w+))?/i,
     "arguments": [
       {
         "name": "product",
