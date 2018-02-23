@@ -20,7 +20,7 @@ const database = firebase.database()
 const clients = [
   {
     "name": "stock",
-    "regex": /(?:is(?: there)?|do we have) (\S+) in stock(?: at (\w+))?/i,
+    "regex": /(?:is(?: there)?|do we have) ([\s\S]+) in stock(?: at (\w+))?/i,
     "arguments": [
       {
         "name": "product",
