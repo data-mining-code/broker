@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "execall": "1.0.0",
+    "firebase": "4.10.1",
     "r2": "2.0.0",
     "server-router": "6.0.0"
   }
