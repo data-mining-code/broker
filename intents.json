@@ -1,0 +1,123 @@
+[
+  {
+    "tag": "question_words",
+    "words": [
+    	"what",
+    	"when",
+    	"why",
+    	"which",
+    	"who",
+    	"how",
+    	"whose",
+    	"whom",
+    	"have",
+    	"is"
+    ]
+  },
+  {
+    "tag": "location",
+    "words": [
+    	"wedding",
+    	"kreuzberg",
+    	"berlin",
+    	"mitte",
+    	"lichtenberg",
+    	"spandau",
+    	"friedrichshain",
+    	"marienfelde",
+    	"berolina",
+    	"schonefeld"
+    ]
+  },
+  {
+    "tag": "question_key_words",
+    "words": [
+    	"price",
+    	"address",
+    	"hours",
+    	"contact",
+    	"promotion",
+    	"sales",
+    	"receipt",
+    	"invoice",
+    	"purchase",
+    	"account",
+    	"renew",
+    	"buy",
+    	"see",
+    	"come",
+    	"go",
+    	"discount",
+    	"coupons",
+    	"delivery",
+    	"lost",
+    	"win",
+    	"open",
+    	"close",
+    	"far",
+    	"sell",
+    	"stock"
+    ]
+  },
+  {
+    "tag": "product_key_words",
+    "words": [
+    	"halal",
+    	"gluten-free",
+    	"vegan",
+    	"beverages",
+    	"canned food",
+    	"packaged food",
+    	"bakery",
+    	"breakfast",
+    	"cereal",
+    	"frozen food",
+    	"miscellaneous kitchen items",
+    	"produce",
+    	"refrigerated food",
+    	"grocery",
+    	"fresh",
+    	"fruits",
+    	"vegetables",
+    	"fish",
+    	"seafood",
+    	"meat",
+    	"poultry",
+    	"gourmet",
+    	"imported",
+    	"healthcare",
+    	"wellness",
+    	"apparel",
+    	"footwear",
+    	"office",
+    	"housekeeping",
+    	"electronics",
+    	"appliances",
+    	"diy",
+    	"home improvement",
+    	"bio"
+    ]
+  },
+  {
+  	"tag": "positive",
+  	"words": [
+  		"good",
+  		"great",
+  		"perfect",
+  		"love",
+  		"happy",
+  		"fresh"
+  	]
+  },
+  {
+  	"tag": "negative",
+  	"words": [
+  		"bad",
+  		"rotten",
+  		"spoiled",
+  		"old",
+  		"expired",
+  		"broken"
+  	]
+  }  
+]
