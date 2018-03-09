@@ -2,17 +2,26 @@
   {
     "tag": "question_words",
     "words": [
-    	"what",
+		"what",
+		"where",
     	"when",
     	"why",
     	"which",
     	"who",
     	"how",
     	"whose",
-    	"whom",
-    	"have",
-    	"is"
+		"whom",
+		"do"
     ]
+  },
+  {
+	"tag": "verb",
+	"words": [
+		"is",
+		"are",
+		"have",
+		"has"
+	]
   },
   {
     "tag": "location",
@@ -56,7 +65,11 @@
     	"close",
     	"far",
     	"sell",
-    	"stock"
+			"stock",
+			"store",
+			"stores",
+			"shop",
+			"shops"
     ]
   },
   {
@@ -94,8 +107,8 @@
     	"electronics",
     	"appliances",
     	"diy",
-    	"home improvement",
-    	"bio"
+			"home improvement",
+			"bio"
     ]
   },
   {
@@ -119,5 +132,31 @@
   		"expired",
   		"broken"
   	]
+  },
+  {
+	"tag": "noncapture",
+	 "words": [
+		"at",
+		"in",
+		"on",
+		"a",
+		"an",
+		"you",
+		"your",
+		"i",
+		"me",
+		"we",
+		"they",
+		"my",
+		"mine",
+		"do",
+		"he",
+		"she",
+		"it",
+		"his",
+		"him",
+		"her",
+		"does"
+	  ]
   }  
 ]
