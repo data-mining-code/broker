@@ -31,7 +31,7 @@ index.setSettings({
   ]
 });
 
-async function processinput(query,text_string,input,cb) {
+async function processinput(query,input,cb) {
   return new Promise(async (resolve, reject) => {
     const input_list = input
       .toLowerCase()
@@ -72,9 +72,7 @@ async function processinput(query,text_string,input,cb) {
     iteritems.forEach(obj => {
       if (obj.input_word === obj.intent_word_list_word) {
         query[obj.intent['tag']] = obj.intent_word
-        text_string += obj.intent_word
         found.push(obj.input_word)
-        //console.log(text_string)
       }
     })
     let notmatched = ''
@@ -89,8 +87,7 @@ async function processinput(query,text_string,input,cb) {
     //console.log('NotMatched: ', notmatched)
     const results = await runSearch(notmatched)
     if (results) {
-      //text_string += results[1]
-      console.log('Exaxtly one: ', results['hits'])
+      //console.log('Exaxtly one: ', results['hits'])
       query['product'] = results['hits'][0]['objectID']
     } else {
       //Empty
@@ -102,7 +99,7 @@ async function processinput(query,text_string,input,cb) {
 async function runSearch(input) {
   return new Promise(async (resolve, reject) => {
     const results = await algoliaSearch(input)
-    console.log(results)
+    //console.log(results)
     resolve(results)
   })
 }
@@ -147,18 +144,41 @@ function getclient(query) {
   } else {
     query['client'] = 'not_found'
   }
-  Object.keys(query).map(function(objectKey, index) {
-    console.log(objectKey, ': ', query[objectKey])
-  });
+  // Object.keys(query).map(function(objectKey, index) {
+  //   console.log(objectKey, ': ', query[objectKey])
+  // });
+}
+
+function save_request(timestamp, sessid, input, query) {
+  const request = {
+    text: input,
+    query: query,
+  }
+
+  if (sessid == 'undefined') {
+    console.log('undefined')
+    sessid = timestamp
+    firebase.database().ref(`logs/${sessid}`).set({
+      sentiment: 'undefined'
+    })
+    .catch(function(error) {
+      console.log(error)
+    });
+  }
+  var chat = firebase.database().ref(`logs/${sessid}/chat`)
+  var newaction = chat.push({
+    request: request
+  })
+  var actionid = newaction.key
+  return {sessid, actionid}
 }
 
 router.route('GET', '/api/request', async (req, res) => {
   const timestamp = Date.now()
-
   const input = querystring.parse(url.parse(req.url).query).input
-  var text_string = ""
+  var sessid = querystring.parse(url.parse(req.url).query).id
   const query = {}
-  var results = await processinput(query,text_string,input)
+  var results = await processinput(query,input)
   getclient(query)
   
   let qs = `?client=${query['client']}`
@@ -169,31 +189,29 @@ router.route('GET', '/api/request', async (req, res) => {
       qs = qs + objectKey + '=' + query[objectKey];
     }
   });
-  console.log(qs)
+  //console.log(qs)
   
-  const obj = {
-     text: input,
-     query: query,
-  }
-  firebase.database().ref(`logs/${timestamp}/request`).set(obj)
+  var {sessid, actionid} = save_request(timestamp, sessid, input, query)
   
-  let response = text_string
   if (query['client'] === 'not_found') {
     response = `Sorry, I don't understand.`
   } else {
     response = await r2(`http://pythontest${qs}`).text
   }
   res.writeHead(200, {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': '*', 
     'Content-Type': 'application/json'
   })
-  database.ref(`logs/${timestamp}/response`).set({
+  database.ref(`logs/${sessid}/chat/${actionid}/response`).set({
     text: response
   })
   .catch(function(error) {
     console.log(error)
   });
-  res.end(JSON.stringify({text:response}))  
+  res.end(JSON.stringify({
+    text:response,
+    id:sessid
+  }))  
 })
 
 http.createServer(router.start()).listen(3030)
