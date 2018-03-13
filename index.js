@@ -42,8 +42,8 @@ async function processinput(query,input,cb) {
     intents.forEach(function(intent) {
       query[intent['tag']] = ""
     })
-    query['product'] = ""
-    query['notmatched'] = []
+    query['productid'] = ""
+    query['notmatched'] = ""
 
     //Create all Combinations of Input words and list words that must be iterated over
     let iteritems = []
@@ -79,7 +79,7 @@ async function processinput(query,input,cb) {
     input_list.map((word) =>{
       if (!found.includes(word) && word.length > 2 && !intents[7]['words'].includes(word)) {
         notmatched = notmatched + word + " "
-        query['notmatched'].push(word) 
+        query['notmatched'] = word 
       }
     })
 
@@ -112,7 +112,7 @@ function algoliaSearch(input) {
         reject(err)
       }
       var result
-      if (content.hits[0]) {
+      if (content.hits) {
         result = {input, hits: content.hits.slice(0, 5)}
       }
       resolve(result)   
