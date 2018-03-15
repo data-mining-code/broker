@@ -88,7 +88,7 @@ async function processinput(query,input,cb) {
     //For every item that was not yet found call the API to look if you found a product
     //console.log('NotMatched: ', notmatched)
     const results = await runSearch(notmatched)
-    if (results) {
+    if (results['hits'].length > 0) {
       //console.log('Exaxtly one: ', results['hits'])
       query['product'] = results['hits'][0]['objectID']
     } else {
@@ -155,6 +155,8 @@ function save_request(timestamp, sessid, input, query) {
   const request = {
     text: input,
     query: query,
+    type: "",
+    sentiment: ""
   }
 
   if (sessid == 'undefined') {
@@ -179,6 +181,7 @@ router.route('GET', '/api/request', async (req, res) => {
   const timestamp = Date.now()
   const input = querystring.parse(url.parse(req.url).query).input
   var sessid = querystring.parse(url.parse(req.url).query).id
+  const dest = querystring.parse(url.parse(req.url).query).dest
   const query = {}
   var results = await processinput(query,input)
   getclient(query)
@@ -191,7 +194,7 @@ router.route('GET', '/api/request', async (req, res) => {
       qs = qs + objectKey + '=' + query[objectKey];
     }
   });
-  //console.log(qs)
+  console.log(qs)
   
   var {sessid, actionid} = save_request(timestamp, sessid, input, query)
   
