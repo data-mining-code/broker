@@ -65,11 +65,11 @@
     	"close",
     	"far",
     	"sell",
-			"stock",
-			"store",
-			"stores",
-			"shop",
-			"shops"
+		"stock",
+		"store",
+		"stores",
+		"shop",
+		"shops"
     ]
   },
   {
@@ -107,31 +107,9 @@
     	"electronics",
     	"appliances",
     	"diy",
-			"home improvement",
-			"bio"
+		"home improvement",
+		"bio"
     ]
-  },
-  {
-  	"tag": "positive",
-  	"words": [
-  		"good",
-  		"great",
-  		"perfect",
-  		"love",
-  		"happy",
-  		"fresh"
-  	]
-  },
-  {
-  	"tag": "negative",
-  	"words": [
-  		"bad",
-  		"rotten",
-  		"spoiled",
-  		"old",
-  		"expired",
-  		"broken"
-  	]
   },
   {
 	"tag": "noncapture",

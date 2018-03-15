@@ -40,7 +40,9 @@ async function processinput(query,input,cb) {
     
     //Generate empty query object ready to be filled
     intents.forEach(function(intent) {
-      query[intent['tag']] = ""
+      if (intent['tag'] != "noncapture") {
+        query[intent['tag']] = ""
+      }
     })
     query['productid'] = ""
     query['notmatched'] = ""
@@ -77,7 +79,7 @@ async function processinput(query,input,cb) {
     })
     let notmatched = ''
     input_list.map((word) =>{
-      if (!found.includes(word) && word.length > 2 && !intents[7]['words'].includes(word)) {
+      if (!found.includes(word) && word.length > 2 && !intents[5]['words'].includes(word)) {
         notmatched = notmatched + word + " "
         query['notmatched'] = word 
       }
@@ -159,7 +161,7 @@ function save_request(timestamp, sessid, input, query) {
     console.log('undefined')
     sessid = timestamp
     firebase.database().ref(`logs/${sessid}`).set({
-      sentiment: 'undefined'
+      user_type: 'undefined'
     })
     .catch(function(error) {
       console.log(error)
