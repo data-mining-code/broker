@@ -3,6 +3,8 @@
     "start": "node index"
   },
   "dependencies": {
+    "algoliasearch": "3.25.1",
+    "async": "^2.6.0",
     "execall": "1.0.0",
     "firebase": "4.10.1",
     "r2": "2.0.0",
