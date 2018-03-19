@@ -163,7 +163,10 @@ function save_request(timestamp, sessid, input, query) {
     console.log('undefined')
     sessid = timestamp
     firebase.database().ref(`logs/${sessid}`).set({
-      user_type: 'undefined'
+      user_type: '',
+      questions_asked : '',
+      shops_asked : '',
+      products_asked : ''
     })
     .catch(function(error) {
       console.log(error)
