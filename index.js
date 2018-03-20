@@ -151,10 +151,14 @@ function getclient(query) {
   } else {
     query['client'] = 'not_found'
   }
-  query['compare_string'] = [query['client'],qword,query['product'],q_key_word,p_key_word,location].join(" ")
-  // Object.keys(query).map(function(objectKey, index) {
+  if (query['client'] != 'not_found') {
+    query['compare_string'] = [query['client'],qword,query['product'],q_key_word,p_key_word,location].join(" ")
+  } else {
+    query['compare_string'] = query['client']
+  }
+    // Object.keys(query).map(function(objectKey, index) {
   //   console.log(objectKey, ': ', query[objectKey])
-  // });
+  // });  
 }
 
 function save_request(timestamp, sessid, input, query) {
