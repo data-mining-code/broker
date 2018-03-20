@@ -88,15 +88,18 @@ async function processinput(query,input,cb) {
 
     //For every item that was not yet found call the API to look if you found a product
     //console.log('NotMatched: ', notmatched)
-    const results = await runSearch(notmatched)
-    if (results['hits'].length > 0) {
-      //console.log('Exaxtly one: ', results['hits'])
-      query['productid'] = results['hits'][0]['objectID']
-      query['product'] = results['hits'][0]['name']
-    } else {
-      //Empty
+    if (notmatched != '') {
+      const results = await runSearch(notmatched)
+    
+      if (results['hits'].length > 0) {
+        //console.log('Exaxtly one: ', results['hits'])
+        query['productid'] = results['hits'][0]['objectID']
+        query['product'] = results['hits'][0]['name']
+      } else {
+        //Empty
+      }
     }
-    resolve(results)
+    resolve(query)
   })
 }
 
