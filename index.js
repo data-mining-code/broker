@@ -44,6 +44,7 @@ async function processinput(query,input,cb) {
         query[intent['tag']] = ""
       }
     })
+    query['product'] = ""
     query['productid'] = ""
     query['notmatched'] = ""
 
@@ -90,7 +91,8 @@ async function processinput(query,input,cb) {
     const results = await runSearch(notmatched)
     if (results['hits'].length > 0) {
       //console.log('Exaxtly one: ', results['hits'])
-      query['product'] = results['hits'][0]['objectID']
+      query['productid'] = results['hits'][0]['objectID']
+      query['product'] = results['hits'][0]['name']
     } else {
       //Empty
     }
@@ -123,7 +125,7 @@ function algoliaSearch(input) {
 }
 
 function getclient(query) {
-  //Figure out the kind of request based on a few keywords
+  //Figure out the kind of request based on a few keywords 
   let qword = query['question_words']
   let q_key_word = query['question_key_words']
   let p_key_word = query['product_key_words']
@@ -146,6 +148,7 @@ function getclient(query) {
   } else {
     query['client'] = 'not_found'
   }
+  query['compare_string'] = [query['client'],qword,query['product'],q_key_word,p_key_word,location].join(" ")
   // Object.keys(query).map(function(objectKey, index) {
   //   console.log(objectKey, ': ', query[objectKey])
   // });
