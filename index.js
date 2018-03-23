@@ -232,5 +232,17 @@ router.route('GET', '/api/request', async (req, res) => {
   }))  
 })
 
+router.route('GET', '/dashboard/request', async (req, res) => {
+  response = await r2(`http://dashboard`).text
+  
+  res.writeHead(200, {
+    'Access-Control-Allow-Origin': '*', 
+    'Content-Type': 'application/json'
+  })
+  res.end(JSON.stringify({
+    data:response
+  }))
+})
+
 http.createServer(router.start()).listen(3030)
 
