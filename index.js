@@ -182,6 +182,7 @@ function save_request(timestamp, sessid, input, query) {
       console.log(error)
     });
   }
+  firebase.database().ref(`logs/${sessid}/user_type`).set('');
   var chat = firebase.database().ref(`logs/${sessid}/chat`)
   var newaction = chat.push({
     request: request
@@ -212,9 +213,11 @@ router.route('GET', '/api/request', async (req, res) => {
   var {sessid, actionid} = save_request(timestamp, sessid, input, query)
   
   if (query['client'] === 'not_found') {
-    response = `Sorry, I don't understand.`
+    //response = `Sorry, I don't understand.`
+    response = await r2(`http://pythontest?string=${input}`).text
   } else {
-    response = await r2(`http://pythontest${qs}`).text
+    //response = await r2(`http://pythontest${qs}`).text
+    response = await r2(`http://pythontest?string=${input}`).text
   }
   res.writeHead(200, {
     'Access-Control-Allow-Origin': '*', 
